@@ -257,16 +257,20 @@ def show_charts(user_id, conn):
     user_df.hide(axis='columns')
     
     st.title("Overview")
+    
     col1, col2 = st.columns([1, 1])
     with col1:
         if sex=='Male':
-                st.image('Asset/male.png', width=200)
-                st.write(user_df.to_html(), unsafe_allow_html=True)
+                st.image('Asset/male.png', width=350)
+               
         else:
-                st.image('Asset/female.png', width=200)
+                st.image('Asset/female.png', width=350)
+            
 
     with col2:
-        info_style = "font-size: 20px; padding: 20px; background-color: black; border-radius: 5px;"
+        st.write(user_df.to_html(), unsafe_allow_html=True)  
+        st.divider()
+        info_style = "font-size: 14px; padding: 20px; background-color: black; border-radius: 5px;"
         message=''
         if bmi < 18.5:
             message = ("Underweight: You may need to gain some weight to reach a healthy BMI. "
