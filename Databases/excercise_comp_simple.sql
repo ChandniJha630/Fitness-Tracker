@@ -1,3 +1,23 @@
+CREATE TABLE Exercise_MET_Values (
+    Exercise_ID NUMBER PRIMARY KEY,
+    Exercise VARCHAR2(100),
+    Description VARCHAR2(500),
+    MET_Value NUMBER
+);
+INSERT INTO Exercise_MET_Values (Exercise_ID, Exercise, Description, MET_Value) VALUES (1, 'Yoga', 'Various asanas and practices', 3.00);
+INSERT INTO Exercise_MET_Values (Exercise_ID, Exercise, Description, MET_Value) VALUES (2, 'Walking', 'Brisk walking', 3.50);
+INSERT INTO Exercise_MET_Values (Exercise_ID, Exercise, Description, MET_Value) VALUES (3, 'Running', 'Jogging or running', 8.00);
+INSERT INTO Exercise_MET_Values (Exercise_ID, Exercise, Description, MET_Value) VALUES (4, 'Cricket', 'Playing cricket', 5.00);
+INSERT INTO Exercise_MET_Values (Exercise_ID, Exercise, Description, MET_Value) VALUES (5, 'Badminton', 'Playing badminton', 5.50);
+INSERT INTO Exercise_MET_Values (Exercise_ID, Exercise, Description, MET_Value) VALUES (6, 'Swimming', 'Swimming in pools or open water', 7.00);
+INSERT INTO Exercise_MET_Values (Exercise_ID, Exercise, Description, MET_Value) VALUES (7, 'Cycling', 'Moderate cycling', 6.00);
+INSERT INTO Exercise_MET_Values (Exercise_ID, Exercise, Description, MET_Value) VALUES (8, 'Aerobics/Zumba', 'Group fitness classes', 7.50);
+INSERT INTO Exercise_MET_Values (Exercise_ID, Exercise, Description, MET_Value) VALUES (9, 'Traditional Dance', 'Traditional Indian dances', 5.00);
+INSERT INTO Exercise_MET_Values (Exercise_ID, Exercise, Description, MET_Value) VALUES (10, 'Skipping', 'Rope jumping', 12.00);
+INSERT INTO Exercise_MET_Values (Exercise_ID, Exercise, Description, MET_Value) VALUES (11, 'Martial Arts', 'Engaging in martial arts training, including techniques such as punches, kicks, and blocks. This activity involves a combination of strength, flexibility, and coordination.', 6.00);
+INSERT INTO Exercise_MET_Values (Exercise_ID, Exercise, Description, MET_Value) VALUES (12, 'Misc', 'Other misc. activities throughout the day like cooking, gardening, household/office work', 3.50);
+
+
 DROP TABLE ExerciseData;
 
 CREATE TABLE ExerciseData (
