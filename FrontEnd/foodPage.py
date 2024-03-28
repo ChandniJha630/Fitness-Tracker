@@ -1,5 +1,6 @@
 import streamlit as st
 from PIL import Image
+from datetime import datetime,timedelta
 hashmap = {
     "CerealsAndMillets": [
         "Rice (Brown)",
@@ -211,8 +212,12 @@ hashmap = {
 
 def insert_food_intake(conn, user_id, time_stamp, food_category, food, quantity):
     cur = conn.cursor()
+    st.write(user_id)
+    st.write(time_stamp)
+    st.write(quantity)
+    st.write(food)
     cur.execute(
-        "INSERT INTO FOODLOG (UserID, Timestamp, FoodCategory, Food, Quantity) VALUES (:user_id, :time_stamp, :foodCategory, :food, :quantity)",
+        "INSERT INTO FOODLOG (UserID, time_stamp, FoodCategory, Food, Quantity) VALUES (:user_id, :time_stamp, :foodCategory, :food, :quantity)",
         {
             "user_id": user_id,
             "time_stamp": time_stamp,
@@ -244,9 +249,10 @@ def food_calorie_tracker(user_id, conn):
 
     # Time slot selection
     selected_time = st.selectbox(
-        "Select Time Slot", ["9:00 AM", "1:00 PM", "5:00 PM", "9:00 PM"]
+        "Select Time Slot", ["9:00 AM", "1:00 PM", "5:00 PM", "8:00 PM"]
     )
-
+    selected_time=selected_time.split(" ")[0]
+    selected_time = datetime.strptime(selected_time, "%H:%M").time()
     # Key selection
     category = st.selectbox("Select Category", list(hashmap.keys()))
 
@@ -257,13 +263,13 @@ def food_calorie_tracker(user_id, conn):
     quantity = st.number_input("Enter Quantity (in g/ml)", min_value=1)
 
     if st.button("Submit"):
-        # Insert food intake into database
-        time_stamp = f"{selected_date} {selected_time}"
+        
+        time_stamp = datetime.combine(selected_date, selected_time)
         insert_food_intake(conn, user_id, time_stamp, category, food, quantity)
 
         cur = conn.cursor()
         cur.execute(
-            "SELECT Calories FROM FOODLOG WHERE UserID = :user_id AND Timestamp = :time_stamp",
+            "SELECT Calories FROM FOODLOG WHERE UserID = :user_id AND time_stamp = :time_stamp",
             {"user_id": user_id, "time_stamp": time_stamp},
         )
         calories = cur.fetchall()  # Fetch the calorie value
