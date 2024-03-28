@@ -29,7 +29,7 @@ def calories_burnt(conn, user_id, exercise, duration):
     if cur.rowcount > 0:
         wt = usr_row[0]
     cur.execute(
-        'SELECT met_value,description FROM met_value_table WHERE exercise = :exercise',
+        'SELECT met_value,description FROM Exercise_MET_Values WHERE exercise = :exercise',
         {"exercise": exercise},
     )
 
@@ -43,11 +43,11 @@ def calories_burnt(conn, user_id, exercise, duration):
 def add_exercise(conn, user_id, time_stamp,exercise,duration,cals):
     cur = conn.cursor()
     cur.execute(
-       """ INSERT INTO exercise_log (time_stamp, user_id, exercise_type, duration_hours, calories_burnt)
-            VALUES (:time_stamp, :user_id, :exercise_type, :duration_hours, :calories_burnt) """,
+       """ INSERT INTO ExerciseData (timedate, UserID, TypeOfExercise, Duration, CaloriesBurnt)
+            VALUES (:timedate, :UserID, :TypeOfExercise, :Duration, :CaloriesBurnt) """,
        
-       {"time_stamp": time_stamp, "user_id": user_id, "exercise_type": exercise, 
-        "duration_hours": duration, "calories_burnt": cals},
+       {"timedate": time_stamp, "UserID": user_id, "TypeOfExercise": exercise, 
+        "Duration": duration, "CaloriesBurnt": cals},
     )
     conn.commit()
     cur.close()
