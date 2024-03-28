@@ -212,10 +212,6 @@ hashmap = {
 
 def insert_food_intake(conn, user_id, time_stamp, food_category, food, quantity):
     cur = conn.cursor()
-    st.write(user_id)
-    st.write(time_stamp)
-    st.write(quantity)
-    st.write(food)
     cur.execute(
         "INSERT INTO FOODLOG (UserID, time_stamp, FoodCategory, Food, Quantity) VALUES (:user_id, :time_stamp, :foodCategory, :food, :quantity)",
         {
